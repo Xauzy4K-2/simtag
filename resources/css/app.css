@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+    --color-brand-50: #ecfdf5;
+    --color-brand-100: #d1fae5;
+    --color-brand-200: #a7f3d0;
+    --color-brand-300: #6ee7b7;
+    --color-brand-400: #34d399;
+    --color-brand-500: #10b981;
+    --color-brand-600: #059669;
+    --color-brand-700: #047857;
+    --color-brand-800: #065f46;
+    --color-brand-900: #064e3b;
+    --color-brand-950: #022c22;
+}
+
+[x-cloak] { display: none !important; }
+
+html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body { @apply bg-slate-50 text-slate-700 antialiased; overflow-x: clip; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@layer components {
+    /* ---------- Tombol ---------- */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition
+            focus:outline-none focus-visible:ring-4 disabled:cursor-not-allowed disabled:opacity-60 whitespace-nowrap;
+    }
+    .btn-sm { @apply px-3 py-1.5 text-xs rounded-lg; }
+    .btn-lg { @apply px-6 py-3.5 text-base; }
+    .btn-primary { @apply bg-brand-600 text-white shadow-sm shadow-brand-600/20 hover:bg-brand-700 focus-visible:ring-brand-200; }
+    .btn-secondary { @apply bg-white text-slate-700 border border-slate-200 hover:border-brand-300 hover:text-brand-700 focus-visible:ring-slate-200; }
+    .btn-danger { @apply bg-rose-600 text-white hover:bg-rose-700 focus-visible:ring-rose-200; }
+    .btn-soft-danger { @apply bg-rose-50 text-rose-600 border border-rose-100 hover:bg-rose-100 focus-visible:ring-rose-100; }
+    .btn-sky { @apply bg-sky-600 text-white hover:bg-sky-700 focus-visible:ring-sky-200; }
+    .btn-ghost { @apply text-slate-600 hover:bg-slate-100 focus-visible:ring-slate-200; }
+
+    /* ---------- Form ---------- */
+    .label { @apply mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500; }
+    .input {
+        @apply block w-full rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-sm text-slate-800
+            placeholder:text-slate-400 transition outline-none
+            focus:border-brand-500 focus:bg-white focus:ring-4 focus:ring-brand-100;
+    }
+    .input-error { @apply border-rose-400 bg-rose-50/40 focus:border-rose-500 focus:ring-rose-100; }
+    .field-error { @apply mt-1.5 flex items-center gap-1.5 text-xs font-medium text-rose-600; }
+    .hint { @apply mt-1.5 text-xs text-slate-400; }
+
+    /* ---------- Kartu ---------- */
+    .card { @apply min-w-0 rounded-2xl border border-slate-200/80 bg-white shadow-sm; }
+    .card-body { @apply p-4 sm:p-6; }
+    .card-header { @apply flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-4 py-4 sm:px-6; }
+    .card-title { @apply text-base font-extrabold text-slate-900; }
+
+    /* ---------- Badge ---------- */
+    .badge { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold leading-none whitespace-nowrap; }
+    .badge-green { @apply bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200; }
+    .badge-blue { @apply bg-sky-50 text-sky-700 ring-1 ring-sky-200; }
+    .badge-amber { @apply bg-amber-50 text-amber-700 ring-1 ring-amber-200; }
+    .badge-red { @apply bg-rose-50 text-rose-700 ring-1 ring-rose-200; }
+    .badge-slate { @apply bg-slate-100 text-slate-600 ring-1 ring-slate-200; }
+    .badge-violet { @apply bg-violet-50 text-violet-700 ring-1 ring-violet-200; }
+
+    /* ---------- Tabel ---------- */
+    .table-wrap { @apply overflow-x-auto; }
+    .table { @apply w-full text-left text-sm; }
+    .table thead th { @apply bg-slate-50 px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-500 whitespace-nowrap; }
+    .table tbody td { @apply border-t border-slate-100 px-4 py-3.5 align-middle; }
+    .table tbody tr { @apply transition hover:bg-slate-50/70; }
+
+    /* ---------- Navigasi ---------- */
+    .nav-link { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-brand-50 hover:text-brand-700; }
+    .nav-link.active { @apply bg-brand-600 text-white shadow-sm shadow-brand-600/25 hover:bg-brand-600 hover:text-white; }
+    .nav-link i { @apply w-5 text-center; }
+
+    .stat-icon { @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-lg; }
+}
+
+/* Paginasi bawaan Laravel (tailwind) agar tetap rapi di layar kecil */
+nav[role='navigation'] svg { width: 1.1rem; height: 1.1rem; }
+
+/* Bintang rating */
+.star-input label { @apply cursor-pointer text-3xl text-slate-200 transition sm:text-[2rem]; }
+.star-input label:hover, .star-input label.on { @apply text-amber-400; }
+
+@media print {
+    .no-print { display: none !important; }
+    body { background: #fff; }
+}
